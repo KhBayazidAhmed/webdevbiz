@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import Logo from "../../public/Images/logo.svg";
-import MobileMenu from "../../public/Images/mobileToggle.svg";
 import Link from "next/link";
 import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -31,17 +31,16 @@ const Header = () => {
   }
 
   return (
-    <nav className=" flex items-center uppercase font-light text-white text-xl justify-between fixed w-full p-5 bg-[#212134]">
+    <nav
+      className=" flex items-center uppercase font-light text-white text-md justify-between fixed w-full p-5 
+    bg-clip-padding backdrop-filter  backdrop-blur-lg 
+    bg-blue-600 bg-opacity-50 backdrop-saturate-50 backdrop-contrast-150"
+    >
       <Link href="/">
         <Image src={Logo} alt="WebDevBiz" width={150} />
       </Link>
-      <div onClick={showNavInMobile} className="sm:hidden">
-        <Image
-          className="bg-white cursor-pointer"
-          src={MobileMenu}
-          width={30}
-          alt="MobileMenu"
-        />
+      <div onClick={showNavInMobile} className="sm:hidden cursor-pointer">
+        <GiHamburgerMenu size={35} />
       </div>
       <div
         className={
@@ -54,8 +53,9 @@ const Header = () => {
           return (
             <Link
               className={
-                mobileMenu &&
-                `transition duration-300 ease-in-out hover:bg-gray-500 m-1 py-1 w-full text-center  `
+                mobileMenu
+                  ? `transition duration-300 ease-in-out hover:bg-gray-700 m-1 py-1 w-full text-center  `
+                  : null
               }
               key={index}
               href={items.link}
